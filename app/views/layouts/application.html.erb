@@ -7,7 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <h1> <%= link_to "Main site", root_path%> </h1>
+  <hr>
+  <p class='notice' id='alert'> <%= notice %> </p>
+  <p class='alert' id='alert'> <%= alert %> </p>
 <%= yield %>
 
 </body>
