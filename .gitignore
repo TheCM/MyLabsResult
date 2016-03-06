@@ -15,3 +15,11 @@
 /log/*
 !/log/.keep
 /tmp
+/*.swp
+/.Gemfile.swp
+/app/views/layouts/.application.html.erb.swp
+/app/views/main_site/.main.slim.swp
+/config/.application.rb.swp
+/config/.routes.rb.swp
+/config/environments/.development.rb.swp
+/config/environments/.production.rb.swp
