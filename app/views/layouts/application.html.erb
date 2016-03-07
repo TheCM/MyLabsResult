@@ -9,7 +9,11 @@
 <body>
   <h1> <%= link_to "Main site", root_path%> </h1>
   <p> <%= link_to "Registration", new_user_registration_path %> </p>
-  <p> <%= link_to "Login", new_user_session_path %> </p>
+  <% if !current_user %>
+    <p> <%= link_to "Login", new_user_session_path %> </p>
+  <% else %>
+    <p> Witaj, <%= current_user.email %>!  <%= link_to "Logout", destroy_user_session_path, method: 'DELETE' %> </p>
+  <% end %>
   <hr>
   <p class='notice' id='alert'> <%= notice %> </p>
   <p class='alert' id='alert'> <%= alert %> </p>
