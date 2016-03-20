@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 
 
-  devise_for :users
-  devise_for :labs
+
+  devise_for :admins, controllers: { sessions: "admins/sessions" }
+  devise_for :workers, controllers: { sessions: "workers/sessions" }
+  devise_for :users, controllers: { sessions: "users/sessions" }
+  devise_for :labs, controllers: { sessions: "labs/sessions" }
 
   root 'main_site#main'
 
