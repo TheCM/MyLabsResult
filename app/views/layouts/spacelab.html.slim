@@ -32,23 +32,31 @@ html(lang="en")
           a href = '#{root_path}' class = "navbar-brand " <span class="fa fa-heartbeat"> </span> MyLabsResult
         div class = "navbar-collapse collapse" id = "navbar-main"
           ul class = "nav navbar-nav"
-            li class = "dropdown"
-              a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Themes <span class="fa fa-toggle-down"></span> 
-              ul class="dropdown-menu" aria-labelledby="themes"
-                li
-                  a href='#' option_1
-                li
-                  a href='#' option_2
-                li
-                  a href='#' option_3
-            - if !current_user
+            - if current_lab || current_admin
+              li class="dropdown"
+                a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Register <span class="fa fa-toggle-down"></span> 
+                ul class="dropdown-menu" aria-labelledby="themes"
+                  li
+                    = link_to raw("Register new user <span class='fa fa-bookmark'> </span>"), new_user_registration_path
+                  li
+                    = link_to raw("Register new worker <span class='fa fa-bookmark'> </span>"), new_worker_registration_path
+                  - if current_admin
+                    li
+                      = link_to raw("Register new lab <span class='fa fa-bookmark'> </span>"), new_lab_registration_path
+            - if !current_user && !current_lab && !current_worker && !current_admin
+              li class = "dropdown"
+                a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Login <span class="fa fa-toggle-down"></span> 
+                ul class="dropdown-menu" aria-labelledby="themes"
+                  li
+                    = link_to raw("Login as user <span class='fa fa-arrow-circle-o-down'> </span>"), new_user_session_path
+                  li
+                    = link_to raw("Login as worker <span class='fa fa-arrow-circle-o-down'> </span>"), new_worker_session_path
+                  li
+                    = link_to raw("Login as lab <span class='fa fa-arrow-circle-o-down'> </span>"), new_lab_session_path
+            - else
               li
-                a href = '#{ new_user_registration_path }' Registration  <span class="fa fa-bookmark"> </span>
-            li
-              - if !current_user
-                = link_to raw("Login <span class='fa fa-arrow-circle-o-down'> </span>"), new_user_session_path
-              - else
                 = link_to "Logout", destroy_user_session_path, method: 'delete'
+
 
     div id = "main-container" class = "container"
       = yield
