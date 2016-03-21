@@ -14,17 +14,7 @@ html(lang="en")
 
 
   body
-    /h3
-    /  = link_to "Main site", root_path
-    /p
-    /  = link_to "Registration", new_user_registration_path
-    /- if !current_user 
-    /  p
-    /    = link_to "Login", new_user_session_path
-    /- else 
-    /  p Witaj, #{ current_user.email }!
-    /  = link_to "logout", destroy_user_session_path, method: 'delete'
-    /hr
+
 
     div class = "navbar navbar-default navbar-fixed-top"
       div class = "container"
@@ -58,7 +48,10 @@ html(lang="en")
                 = link_to "Logout", destroy_user_session_path, method: 'delete'
 
 
+
     div id = "main-container" class = "container"
+      - flash.each do |name, msg|
+        = content_tag :div, msg, class: "alert alert-info"
       = yield
 
     /!

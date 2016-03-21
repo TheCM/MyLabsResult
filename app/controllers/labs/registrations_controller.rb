@@ -10,7 +10,13 @@ class Labs::RegistrationsController < Devise::RegistrationsController
   # POST /resource
    def create
      # sign_out current_admin
-     render plain: params
+     if labs_params[:password] == labs_params[:password_confirmation]
+       lab = Lab.new(labs_params)
+       lab.save!
+       redirect_to root_path, notice: "Lab created!"
+     else
+       redirect_to request.referer, alert: "Password confirmation not correct!"
+     end
    end
 
   # GET /resource/edit
@@ -38,6 +44,10 @@ class Labs::RegistrationsController < Devise::RegistrationsController
   # end
 
   # protected
+
+  def labs_params
+    params.require(:lab).permit(:email, :password, :password_confirmation, :name, :description)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
