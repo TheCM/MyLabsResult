@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :admins, controllers: { sessions: "admins/sessions" }
   devise_for :workers, controllers: { sessions: "workers/sessions" }
   devise_for :users, controllers: { sessions: "users/sessions" }
-  devise_for :labs, controllers: { sessions: "labs/sessions" }
+  devise_for :labs, controllers: { registrations: "labs/registrations" }
 
   root 'main_site#main'
 

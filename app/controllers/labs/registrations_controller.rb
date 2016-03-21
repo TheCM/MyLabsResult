@@ -3,14 +3,15 @@ class Labs::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+   def new
+     super
+   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     # sign_out current_admin
+     render plain: params
+   end
 
   # GET /resource/edit
   # def edit
