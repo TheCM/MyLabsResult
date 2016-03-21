@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319145052) do
+ActiveRecord::Schema.define(version: 20160319142203) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20160319145052) do
   add_index "labs", ["reset_password_token"], name: "index_labs_on_reset_password_token", unique: true
 
   create_table "results", force: :cascade do |t|
-    t.integer  "type_of_tissue_id"
-    t.integer  "type_of_examination_id"
+    t.integer  "type_of_tissue_id",                   null: false
+    t.integer  "type_of_examination_id",              null: false
     t.text     "description",            default: "", null: false
     t.string   "diagnosis",              default: ""
     t.datetime "created_at",                          null: false
@@ -61,16 +61,12 @@ ActiveRecord::Schema.define(version: 20160319145052) do
   end
 
   create_table "results_for_users", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "worker_id"
-    t.integer  "result_id"
+    t.integer  "user_id",    null: false
+    t.integer  "worker_id",  null: false
+    t.integer  "result_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "results_for_users", ["result_id"], name: "index_results_for_users_on_result_id"
-  add_index "results_for_users", ["user_id"], name: "index_results_for_users_on_user_id"
-  add_index "results_for_users", ["worker_id"], name: "index_results_for_users_on_worker_id"
 
   create_table "type_of_examinations", force: :cascade do |t|
     t.string   "examination", null: false
@@ -107,7 +103,7 @@ ActiveRecord::Schema.define(version: 20160319145052) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "workers", force: :cascade do |t|
-    t.integer  "lab_id"
+    t.integer  "lab_id",                              null: false
     t.string   "email",                  default: "", null: false
     t.string   "first_name",             default: "", null: false
     t.string   "last_name",              default: "", null: false
@@ -126,7 +122,6 @@ ActiveRecord::Schema.define(version: 20160319145052) do
   end
 
   add_index "workers", ["email"], name: "index_workers_on_email", unique: true
-  add_index "workers", ["lab_id"], name: "index_workers_on_lab_id"
   add_index "workers", ["reset_password_token"], name: "index_workers_on_reset_password_token", unique: true
 
 end

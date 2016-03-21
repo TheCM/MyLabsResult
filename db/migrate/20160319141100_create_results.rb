@@ -1,8 +1,8 @@
 class CreateResults < ActiveRecord::Migration
   def change
     create_table :results do |t|
-      t.belongs_to :type_of_tissue
-      t.belongs_to :type_of_examination
+      t.integer :type_of_tissue_id, null: false
+      t.integer :type_of_examination_id, null: false
 
       t.text :description, null: false, default: ""
       t.string :diagnosis, null: true, default: ""
