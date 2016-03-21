@@ -2,7 +2,7 @@ class DeviseCreateWorkers < ActiveRecord::Migration
   def change
     create_table(:workers) do |t|
       ## Foreign keys
-      t.integer :lab_id, null: false
+      t.belongs_to :lab, index: true
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""
