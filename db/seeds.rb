@@ -12,6 +12,7 @@ User.delete_all
 
 user = User.new
 user.id = '1'
+user.sex = 'M'
 user.email = 'example@mail.com'
 user.password = 'password'
 user.password_confirmation = 'password'
@@ -22,6 +23,7 @@ user.save!
 
 user = User.new
 user.id = '2'
+user.sex = 'F'
 user.email = 'example2@mail.com'
 user.password = 'password'
 user.password_confirmation = 'password'
@@ -32,6 +34,7 @@ user.save!
 
 user = User.new
 user.id = '3'
+user.sex = 'M'
 user.email = 'example3@mail.com'
 user.password = 'password'
 user.password_confirmation = 'password'
@@ -64,6 +67,7 @@ Worker.delete_all
 
 worker = Worker.new
 worker.id = '1'
+worker.sex = 'M'
 worker.email = 'example@mail.com'
 worker.password = 'password'
 worker.password_confirmation = 'password'
@@ -75,6 +79,7 @@ worker.save!
 
 worker = Worker.new
 worker.id = '2'
+worker.sex = 'M'
 worker.email = 'example2@mail.com'
 worker.password = 'password'
 worker.password_confirmation = 'password'
@@ -86,6 +91,7 @@ worker.save!
 
 worker = Worker.new
 worker.id = '3'
+worker.sex = 'F'
 worker.email = 'example3@mail.com'
 worker.password = 'password'
 worker.password_confirmation = 'password'

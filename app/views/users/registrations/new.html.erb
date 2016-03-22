@@ -34,6 +34,12 @@
     </div>
 
     <div class="field">
+      <%= f.label 'sex' %><br />
+      <%= f.radio_button 'sex','M' %> Male <br/>
+      <%= f.radio_button 'sex','F' %> Female <br/>
+    </div>
+
+    <div class="field">
       <%= f.label 'pesel' %><br />
       <%= f.text_field :pesel, class: "full-field form-control" %>
     </div>

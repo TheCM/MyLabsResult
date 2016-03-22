@@ -34,9 +34,27 @@
     </div>
 
     <div class="field">
+      <%= f.label 'sex' %><br />
+      <%= f.radio_button 'sex','M' %> Male <br/>
+      <%= f.radio_button 'sex','F' %> Female <br/>
+    </div>
+
+    <div class="field">
       <%= f.label 'pesel' %><br />
       <%= f.text_field :pesel, class: "full-field form-control" %>
     </div>
+
+    <% if current_admin %>
+      <div class="field">
+        <%= f.label 'lab' %><br />
+        <select id="worker_lab_id" name="worker[lab_id]">
+          <% @labs.each do |lab| %>
+            <option value = "<%= lab.id %>"> <%= lab.name %> </option>
+          <% end %>
+        </select>
+      </div>
+    <% end %>
+
 
     <div class="actions">
       <%= f.submit "Sign up", class: 'btn btn-primary' %>
