@@ -9,8 +9,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
    def create
-     super
+     if users_params[:password] == users_params[:password_confirmation]
+       user = User.new(users_params)
+       user.save!
+       redirect_to root_path, notice: "user created!"
+     else
+       redirect_to request.referer, alert: "Password confirmation not correct!"
+     end
    end
+
 
   # GET /resource/edit
   # def edit
@@ -38,6 +45,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
+  def users_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :pesel, :sex)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

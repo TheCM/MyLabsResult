@@ -3,14 +3,28 @@ class Workers::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+   def new
+     @labs = Lab.all
+     super
+   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     if workers_params[:password] == workers_params[:password_confirmation]
+       if !current_admin
+         worker = Worker.new(workers_params)
+         worker[:lab_id] = current_lab.id
+         worker.save!
+       else
+         worker = Worker.new(workers_params_for_admin)
+         worker.save!
+       end
+       redirect_to root_path, notice: "worker created!"
+     else
+       redirect_to request.referer, alert: "Password confirmation not correct!"
+     end
+   end
+
 
   # GET /resource/edit
   # def edit
@@ -38,6 +52,13 @@ class Workers::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
+  def workers_params
+    params.require(:worker).permit(:email, :password, :password_confirmation, :first_name, :last_name, :pesel, :sex)
+  end
+
+  def workers_params_for_admin
+    params.require(:worker).permit(:email, :password, :password_confirmation, :first_name, :last_name, :pesel, :lab_id, :sex)
+  end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.for(:sign_up) << :attribute
