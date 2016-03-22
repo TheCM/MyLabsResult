@@ -1,0 +1,24 @@
+h1 class='text-center' My results!
+
+table class="table table-stripped table-hover"
+  thead
+    th #
+    th Doctor
+    th Description
+    th Diagnosis
+  tbody
+    - @resultsforuser.each do |rfu|
+      - worker = Worker.find_by(id: rfu.worker_id)
+      - result = Result.find_by(id: rfu.result_id)
+      tr
+        td
+          = rfu.result_id
+        td
+          = worker.last_name + ' ' + worker.first_name
+        td
+          = result.description
+        td
+          - if result.diagnosis != ''
+            = result.diagnosis
+          - else
+            = 'None'

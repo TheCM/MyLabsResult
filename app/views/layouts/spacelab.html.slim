@@ -22,6 +22,12 @@ html(lang="en")
           a href = '#{root_path}' class = "navbar-brand " <span class="fa fa-heartbeat"> </span> MyLabsResult
         div class = "navbar-collapse collapse" id = "navbar-main"
           ul class = "nav navbar-nav"
+            - if current_lab
+              li
+                = link_to raw("My workers <span class='fa fa-users'></span>"), labs_view_my_workers_path
+            - if current_user
+              li
+                = link_to raw("My results </span><span class='fa fa-flask'></span>"), users_view_my_results_path
             - if current_lab || current_admin
               li class="dropdown"
                 a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Register <span class="fa fa-toggle-down"></span> 
@@ -45,7 +51,7 @@ html(lang="en")
                     = link_to raw("Login as lab <span class='fa fa-arrow-circle-o-down'> </span>"), new_lab_session_path
             - else
               li
-                = link_to "Logout", destroy_user_session_path, method: 'delete'
+                = link_to raw("Logout <span class='fa fa-sign-out'></span>"), destroy_user_session_path, method: 'delete'
 
 
 

@@ -1,0 +1,25 @@
+h1 class="text-center" My workers!
+
+table class="table table-stripped table-hover"
+  thead
+    th #
+    th first name
+    th last name
+    th sex
+    th pesel
+    th email
+  tbody
+    - @workers.each do |worker|
+      tr
+        td
+          = worker.id
+        td
+          = worker.first_name
+        td
+          = worker.last_name
+        td
+          = worker.sex
+        td
+          = worker.pesel
+        td
+          = worker.email
