@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get 'users/view/my_results'
 
+  get 'workers/view/my_results'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

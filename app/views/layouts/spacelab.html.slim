@@ -28,6 +28,9 @@ html(lang="en")
             - if current_user
               li
                 = link_to raw("My results </span><span class='fa fa-flask'></span>"), users_view_my_results_path
+            - if current_worker
+              li
+                = link_to raw("Results for patients </span><span class='fa fa-user-md' aria-hidden='true'></span>"), workers_view_my_results_path
             - if current_lab || current_admin
               li class="dropdown"
                 a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Register <span class="fa fa-toggle-down"></span> 
@@ -52,6 +55,21 @@ html(lang="en")
             - else
               li
                 = link_to raw("Logout <span class='fa fa-sign-out'></span>"), destroy_user_session_path, method: 'delete'
+          - if current_user || current_lab || current_worker || current_admin
+            div class='div-nav-name' align="right"
+              ul class = "list-group"
+                - if current_user
+                  li
+                    = 'User: <b>'.html_safe + current_user.first_name + ' ' + current_user.last_name + '</b>'.html_safe
+                - if current_worker
+                  li
+                    = 'Worker: <b>'.html_safe + current_worker.first_name + ' ' + current_worker.last_name + '</b>'.html_safe + ', <b>'.html_safe + Lab.find_by(id: current_worker.lab_id).name + '</b>'.html_safe
+                - if current_lab
+                  li
+                    = 'Lab: <b>'.html_safe + current_lab.name + '</b>'.html_safe
+                - if current_admin
+                  li
+                    = 'Admin: <b>'.html_safe + current_admin.email  + '</b>'.html_safe
 
 
 
