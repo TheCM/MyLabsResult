@@ -16,10 +16,19 @@ Rails.application.routes.draw do
   get 'main_site/main'
 
   get 'labs/view/my_workers'
+  get 'labs/view/worker_result_list'
 
   get 'users/view/my_results'
 
   get 'workers/view/my_results'
+
+  get 'result/show'
+  get 'result/new'
+  post 'result/create'
+  get 'result/user_search_form'
+  post 'result/user_search_list'
+  get 'result/user_search_result_form'
+  post 'result/user_search_result_list'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

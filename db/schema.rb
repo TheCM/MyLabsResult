@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322120656) do
+ActiveRecord::Schema.define(version: 20160423000746) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -51,11 +51,18 @@ ActiveRecord::Schema.define(version: 20160322120656) do
   add_index "labs", ["email"], name: "index_labs_on_email", unique: true
   add_index "labs", ["reset_password_token"], name: "index_labs_on_reset_password_token", unique: true
 
+  create_table "result_attachments", force: :cascade do |t|
+    t.integer  "result_id"
+    t.string   "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "results", force: :cascade do |t|
     t.integer  "type_of_tissue_id"
     t.integer  "type_of_examination_id"
     t.text     "description",            default: "", null: false
-    t.string   "diagnosis",              default: ""
+    t.text     "diagnosis",              default: ""
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

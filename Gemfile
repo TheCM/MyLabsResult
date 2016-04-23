@@ -14,6 +14,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # Gem for icons on the site
 # gem 'font-awesome-sass'
 
+# Gem for link images in database objects
+gem 'carrierwave'
 # Gems for integrate bootstrap, fontawesome and free bootswatch themes
 # twitter bootstrap css & javascript toolkit
 gem 'twitter-bootswatch-rails', '~> 3.3.4'

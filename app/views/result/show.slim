@@ -1,0 +1,19 @@
+h1 This is page with results details
+
+p
+  ="Number of photos: " + @result_photos_count.to_s
+
+div class='container'
+  - @result_photos.each do |photo|
+    = image_tag photo.picture_url, size: "300", alt: "Picture"
+
+- if current_worker or current_lab
+  p
+    ="Type_of_tissue: " + @tissue
+  p
+    ="Type_of_examination: " + @examination
+
+p
+  ="Description: " + @result.description
+p
+  ="Diagnosis: " + @result.diagnosis

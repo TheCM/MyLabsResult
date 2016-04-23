@@ -23,3 +23,6 @@ table class="table table-stripped table-hover"
           = worker.pesel
         td
           = worker.email
+        td
+          = link_to 'Results', labs_view_worker_result_list_path(worker_id: worker.id)
+

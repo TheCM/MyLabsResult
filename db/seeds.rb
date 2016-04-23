@@ -133,9 +133,9 @@ TypeOfTissue.new(id: '26', tissue: 'Mamma', translation: 'Mammary gland').save!
 
 TypeOfExamination.delete_all
 
-TypeOfExamination.new(id: '1', examination: 'Analog microscophy')
-TypeOfExamination.new(id: '2', examination: 'Electron microscophy')
-TypeOfExamination.new(id: '3', examination: 'Transmition microscophy')
+TypeOfExamination.new(id: '1', examination: 'Analog microscophy').save!
+TypeOfExamination.new(id: '2', examination: 'Electron microscophy').save!
+TypeOfExamination.new(id: '3', examination: 'Transmition microscophy').save!
 
 Result.delete_all
 

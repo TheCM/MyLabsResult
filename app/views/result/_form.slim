@@ -1,0 +1,43 @@
+div class="small-container"
+
+  = form_for(@result, url: {action: "create"}, 'html' => { 'multipart' => true }) do |f|
+
+      div class="field"
+        = label_tag 'Patient'
+        br
+        = text_field_tag 'Patient', @user.pesel + ", " + @user.last_name = " " + @user.first_name, disabled: true
+
+        input type='hidden' name='results_for_users[user_id]' value='#{@user.id}'
+
+      div class="field"
+        = f.label 'Type of tissue'
+        br
+        select id="tissue_id" name="result[type_of_tissue_id]"
+          - @tissues.each do |tissue|
+            option value = '#{ tissue.id }' #{ tissue.tissue }
+
+      div class="field"
+        = f.label 'Type of examination'
+        br
+        select id="examination_id" name="result[type_of_examination_id]"
+          - @examinations.each do |examination|
+            option value = '#{ examination.id }' #{ examination.examination }
+
+      div class="field"
+          = f.label 'description'
+          br
+          = f.text_area 'description'
+
+      div class="field"
+          = f.label 'diagnosis'
+          br
+          = f.text_area 'diagnosis'
+
+      = f.fields_for :result_attachments do |ra|
+          div class="field"
+            = ra.label "picture"
+            = ra.file_field 'picture', 'multiple' => true, name: 'result_attachments[picture][]'
+      br
+
+      div class="actions"
+          = f.submit "Create Result", class: "btn btn-primary"
