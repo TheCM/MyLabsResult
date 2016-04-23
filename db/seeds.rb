@@ -104,38 +104,38 @@ worker.save!
 
 TypeOfTissue.delete_all
 
-TypeOfTissue.new(id: '1', tissue: 'Haema', translation: 'Blood').save!
-TypeOfTissue.new(id: '2', tissue: 'Textus cartilagineus', translation: 'Cartilage').save!
-TypeOfTissue.new(id: '3', tissue: 'Textus osseus', translation: 'Bone').save!
-TypeOfTissue.new(id: '4', tissue: 'Textus muscularis', translation: 'Muscle').save!
-TypeOfTissue.new(id: '5', tissue: 'Thymus', translation: 'Thymus').save!
-TypeOfTissue.new(id: '6', tissue: 'Medulla ossium', translation: 'Bone marrow').save!
-TypeOfTissue.new(id: '7', tissue: 'Lymphonodus', translation: 'Lymphatic node').save!
-TypeOfTissue.new(id: '8', tissue: 'Lien', translation: 'Spleen').save!
-TypeOfTissue.new(id: '9', tissue: 'Hypophysis', translation: 'Pituitary gland').save!
-TypeOfTissue.new(id: '10', tissue: 'Glandula thyroidea', translation: 'Thyroid gland').save!
-TypeOfTissue.new(id: '11', tissue: 'Glandula paratheroidea', translation: 'Parathyroid gland').save!
-TypeOfTissue.new(id: '12', tissue: 'Glandula suprarenalis', translation: 'Adrenal gland').save!
-TypeOfTissue.new(id: '13', tissue: 'Lingua', translation: 'Tongue').save!
-TypeOfTissue.new(id: '14', tissue: 'Oesophagus', translation: 'Oesophagus').save!
-TypeOfTissue.new(id: '15', tissue: 'Ventriculus', translation: 'Stomach').save!
-TypeOfTissue.new(id: '16', tissue: 'Duodenum', translation: 'Duodenum').save!
-TypeOfTissue.new(id: '17', tissue: 'Jejunum', translation: 'Jejunum').save!
-TypeOfTissue.new(id: '18', tissue: 'Hepar', translation: 'Liver').save!
-TypeOfTissue.new(id: '19', tissue: 'Pancreas', translation: 'Pancreas').save!
-TypeOfTissue.new(id: '20', tissue: 'Ren', translation: 'Kidney').save!
-TypeOfTissue.new(id: '21', tissue: 'Ovarium', translation: 'Ovary').save!
-TypeOfTissue.new(id: '22', tissue: 'Uterus', translation: 'Uterus').save!
-TypeOfTissue.new(id: '23', tissue: 'Testis', translation: 'Testis').save!
-TypeOfTissue.new(id: '24', tissue: 'Cerebrum', translation: 'Brain').save!
-TypeOfTissue.new(id: '25', tissue: 'Cardia', translation: 'Heart').save!
-TypeOfTissue.new(id: '26', tissue: 'Mamma', translation: 'Mammary gland').save!
+TypeOfTissue.new(tissue: 'Haema', translation: 'Blood').save!
+TypeOfTissue.new(tissue: 'Textus cartilagineus', translation: 'Cartilage').save!
+TypeOfTissue.new(tissue: 'Textus osseus', translation: 'Bone').save!
+TypeOfTissue.new(tissue: 'Textus muscularis', translation: 'Muscle').save!
+TypeOfTissue.new(tissue: 'Thymus', translation: 'Thymus').save!
+TypeOfTissue.new(tissue: 'Medulla ossium', translation: 'Bone marrow').save!
+TypeOfTissue.new(tissue: 'Lymphonodus', translation: 'Lymphatic node').save!
+TypeOfTissue.new(tissue: 'Lien', translation: 'Spleen').save!
+TypeOfTissue.new(tissue: 'Hypophysis', translation: 'Pituitary gland').save!
+TypeOfTissue.new(tissue: 'Glandula thyroidea', translation: 'Thyroid gland').save!
+TypeOfTissue.new(tissue: 'Glandula paratheroidea', translation: 'Parathyroid gland').save!
+TypeOfTissue.new(tissue: 'Glandula suprarenalis', translation: 'Adrenal gland').save!
+TypeOfTissue.new(tissue: 'Lingua', translation: 'Tongue').save!
+TypeOfTissue.new(tissue: 'Oesophagus', translation: 'Oesophagus').save!
+TypeOfTissue.new(tissue: 'Ventriculus', translation: 'Stomach').save!
+TypeOfTissue.new(tissue: 'Duodenum', translation: 'Duodenum').save!
+TypeOfTissue.new(tissue: 'Jejunum', translation: 'Jejunum').save!
+TypeOfTissue.new(tissue: 'Hepar', translation: 'Liver').save!
+TypeOfTissue.new(tissue: 'Pancreas', translation: 'Pancreas').save!
+TypeOfTissue.new(tissue: 'Ren', translation: 'Kidney').save!
+TypeOfTissue.new(tissue: 'Ovarium', translation: 'Ovary').save!
+TypeOfTissue.new(tissue: 'Uterus', translation: 'Uterus').save!
+TypeOfTissue.new(tissue: 'Testis', translation: 'Testis').save!
+TypeOfTissue.new(tissue: 'Cerebrum', translation: 'Brain').save!
+TypeOfTissue.new(tissue: 'Cardia', translation: 'Heart').save!
+TypeOfTissue.new(tissue: 'Mamma', translation: 'Mammary gland').save!
 
 TypeOfExamination.delete_all
 
-TypeOfExamination.new(id: '1', examination: 'Analog microscophy').save!
-TypeOfExamination.new(id: '2', examination: 'Electron microscophy').save!
-TypeOfExamination.new(id: '3', examination: 'Transmition microscophy').save!
+TypeOfExamination.new(examination: 'Analog microscophy').save!
+TypeOfExamination.new(examination: 'Electron microscophy').save!
+TypeOfExamination.new(examination: 'Transmition microscophy').save!
 
 Result.delete_all
 
@@ -147,10 +147,10 @@ Result.new(description: 'description5', diagnosis: '', type_of_tissue_id: '2', t
 
 ResultsForUser.delete_all
 
-ResultsForUser.new(id: '1', user_id: '1', worker_id: '1', result_id: '1').save!
-ResultsForUser.new(id: '2', user_id: '2', worker_id: '1', result_id: '2').save!
-ResultsForUser.new(id: '3', user_id: '2', worker_id: '2', result_id: '3').save!
-ResultsForUser.new(id: '4', user_id: '1', worker_id: '3', result_id: '4').save!
-ResultsForUser.new(id: '5', user_id: '3', worker_id: '1', result_id: '5').save!
+ResultsForUser.new(user_id: '1', worker_id: '1', result_id: '1').save!
+ResultsForUser.new(user_id: '2', worker_id: '1', result_id: '2').save!
+ResultsForUser.new(user_id: '2', worker_id: '2', result_id: '3').save!
+ResultsForUser.new(user_id: '1', worker_id: '3', result_id: '4').save!
+ResultsForUser.new(user_id: '3', worker_id: '1', result_id: '5').save!
 
 
