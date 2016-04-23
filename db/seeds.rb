@@ -139,11 +139,11 @@ TypeOfExamination.new(id: '3', examination: 'Transmition microscophy').save!
 
 Result.delete_all
 
-Result.new(id: '1', description: 'description1', diagnosis: 'diagnosis1', type_of_tissue_id: '1', type_of_examination_id: '1').save!
-Result.new(id: '2', description: 'description2', diagnosis: 'diagnosis2', type_of_tissue_id: '2', type_of_examination_id: '2').save!
-Result.new(id: '3', description: 'description3', diagnosis: 'diagnosis3', type_of_tissue_id: '3', type_of_examination_id: '3').save!
-Result.new(id: '4', description: 'description4', diagnosis: '', type_of_tissue_id: '3', type_of_examination_id: '1').save!
-Result.new(id: '5', description: 'description5', diagnosis: '', type_of_tissue_id: '2', type_of_examination_id: '2').save!
+Result.new(description: 'description1', diagnosis: 'diagnosis1', type_of_tissue_id: '1', type_of_examination_id: '1').save!
+Result.new(description: 'description2', diagnosis: 'diagnosis2', type_of_tissue_id: '2', type_of_examination_id: '2').save!
+Result.new(description: 'description3', diagnosis: 'diagnosis3', type_of_tissue_id: '3', type_of_examination_id: '3').save!
+Result.new(description: 'description4', diagnosis: '', type_of_tissue_id: '3', type_of_examination_id: '1').save!
+Result.new(description: 'description5', diagnosis: '', type_of_tissue_id: '2', type_of_examination_id: '2').save!
 
 ResultsForUser.delete_all
 
