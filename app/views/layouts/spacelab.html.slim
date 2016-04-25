@@ -25,9 +25,11 @@ html(lang="en")
             - if current_lab
               li
                 = link_to raw("My workers <span class='fa fa-users'></span>"), labs_view_my_workers_path
+
             - if current_user
               li
                 = link_to raw("My results </span><span class='fa fa-flask'></span>"), users_view_my_results_path
+
             - if current_worker
               li class='dropdown'
                 a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" My results <span class="fa fa-toggle-down"></span> 
@@ -38,6 +40,7 @@ html(lang="en")
                     = link_to raw("Results by patients </span><span class='fa fa-user-md' aria-hidden='true'></span>"), result_user_search_result_form_path
               li
                 = link_to raw("New result </span><span class='fa fa-plus-square' aria-hidden='true'></span>"), result_user_search_form_path
+
             - if current_lab || current_admin
               li class="dropdown"
                 a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Register <span class="fa fa-toggle-down"></span> 
@@ -49,9 +52,16 @@ html(lang="en")
                   - if current_admin
                     li
                       = link_to raw("Register new lab <span class='fa fa-bookmark'> </span>"), new_lab_registration_path
+
             - if current_admin
-                li
-                  = link_to raw("ResultsForUsers <span class='fa fa-bookmark'> </span>"), admins_view_results_for_users_path
+              li class="dropdown"
+                a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Results <span class="fa fa-toggle-down"></span> 
+                ul class="dropdown-menu" aria-labelledby="themes"
+                  li
+                    = link_to raw("All results <span class='fa fa-bookmark'> </span>"), admins_view_all_results_path
+                  li
+                    = link_to raw("ResultsForUsers <span class='fa fa-bookmark'> </span>"), admins_view_results_for_users_path
+
             - if !current_user && !current_lab && !current_worker && !current_admin
               li class = "dropdown"
                 a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Login <span class="fa fa-toggle-down"></span> 
@@ -65,6 +75,7 @@ html(lang="en")
             - else
               li
                 = link_to raw("Logout <span class='fa fa-sign-out'></span>"), destroy_user_session_path, method: 'delete'
+
           - if current_user || current_lab || current_worker || current_admin
             div class='div-nav-name' align="right"
               ul class = "list-group"

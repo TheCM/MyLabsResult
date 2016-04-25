@@ -4,4 +4,8 @@ class Admins::ViewController < ApplicationController
   def results_for_users
     @resultsforuser = ResultsForUser.all
   end
+
+  def all_results
+    @results = Result.all
+  end
 end

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'workers/view/my_results'
 
   get 'admins/view/results_for_users'
+  get 'admins/view/all_results'
 
   get 'result/show'
   get 'result/new'

@@ -1,0 +1,19 @@
+h1 class='text-center' All results
+
+table class="table table-stripped table-hover"
+  thead
+    th #
+    th Description
+    th Diagnosis
+  tbody
+    - @results.each do |result|
+      tr
+        td
+          = link_to result.id, result_show_path('result_id' => result.id)
+        td
+          = result.description
+        td
+          - if result.diagnosis != ''
+            = result.diagnosis
+          - else
+            = 'None'
