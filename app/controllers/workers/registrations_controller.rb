@@ -53,11 +53,11 @@ class Workers::RegistrationsController < Devise::RegistrationsController
   # protected
 
   def workers_params
-    params.require(:worker).permit(:email, :password, :password_confirmation, :first_name, :last_name, :pesel, :sex)
+    params.require(:worker).permit(:email, :password, :password_confirmation, :first_name, :last_name, :identifier, :sex)
   end
 
   def workers_params_for_admin
-    params.require(:worker).permit(:email, :password, :password_confirmation, :first_name, :last_name, :pesel, :lab_id, :sex)
+    params.require(:worker).permit(:email, :password, :password_confirmation, :first_name, :last_name, :identifier, :lab_id, :sex)
   end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

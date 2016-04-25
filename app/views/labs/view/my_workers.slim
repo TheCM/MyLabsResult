@@ -6,7 +6,7 @@ table class="table table-stripped table-hover"
     th first name
     th last name
     th sex
-    th pesel
+    th identifier
     th email
   tbody
     - @workers.each do |worker|
@@ -20,7 +20,7 @@ table class="table table-stripped table-hover"
         td
           = worker.sex
         td
-          = worker.pesel
+          = worker.identifier
         td
           = worker.email
         td

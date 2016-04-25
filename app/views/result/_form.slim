@@ -5,7 +5,7 @@ div class="small-container"
       div class="field"
         = label_tag 'Patient'
         br
-        = text_field_tag 'Patient', @user.pesel + ", " + @user.last_name = " " + @user.first_name, disabled: true
+        = text_field_tag 'Patient', @user.identifier + ", " + @user.last_name = " " + @user.first_name, disabled: true
 
         input type='hidden' name='results_for_users[user_id]' value='#{@user.id}'
 

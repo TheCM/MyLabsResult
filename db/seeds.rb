@@ -1,4 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
@@ -18,7 +17,7 @@ user.password = 'password'
 user.password_confirmation = 'password'
 user.first_name = 'John'
 user.last_name = 'Smith'
-user.pesel = '87111112345'
+user.identifier = '87111112345'
 user.save!
 
 user = User.new
@@ -29,7 +28,7 @@ user.password = 'password'
 user.password_confirmation = 'password'
 user.first_name = 'Jenny'
 user.last_name = 'Davis'
-user.pesel = '76121212345'
+user.identifier = '76121212345'
 user.save!
 
 user = User.new
@@ -40,7 +39,7 @@ user.password = 'password'
 user.password_confirmation = 'password'
 user.first_name = 'Carl'
 user.last_name = 'Amsterdam'
-user.pesel = '92052312345'
+user.identifier = '92052312345'
 user.save!
 
 Lab.delete_all
@@ -73,7 +72,7 @@ worker.password = 'password'
 worker.password_confirmation = 'password'
 worker.first_name = 'Philip'
 worker.last_name = 'Marker'
-worker.pesel = '87111112345'
+worker.identifier = '87111112345'
 worker.lab_id = '1'
 worker.save!
 
@@ -85,7 +84,7 @@ worker.password = 'password'
 worker.password_confirmation = 'password'
 worker.first_name = 'George'
 worker.last_name = 'Crusoe'
-worker.pesel = '76121212345'
+worker.identifier = '76121212345'
 worker.lab_id = '1'
 worker.save!
 
@@ -97,16 +96,19 @@ worker.password = 'password'
 worker.password_confirmation = 'password'
 worker.first_name = 'Mary'
 worker.last_name = 'Poppins'
-worker.pesel = '76021212365'
+worker.identifier = '76021212365'
 worker.lab_id = '2'
 worker.save!
 
 
 TypeOfTissue.delete_all
 
-TypeOfTissue.new(tissue: 'Haema', translation: 'Blood').save!
-TypeOfTissue.new(tissue: 'Textus cartilagineus', translation: 'Cartilage').save!
-TypeOfTissue.new(tissue: 'Textus osseus', translation: 'Bone').save!
+type_of_tissue_1 = TypeOfTissue.new(tissue: 'Haema', translation: 'Blood')
+type_of_tissue_1.save!
+type_of_tissue_2 = TypeOfTissue.new(tissue: 'Textus cartilagineus', translation: 'Cartilage')
+type_of_tissue_2.save!
+type_of_tissue_3 = TypeOfTissue.new(tissue: 'Textus osseus', translation: 'Bone')
+type_of_tissue_3.save!
 TypeOfTissue.new(tissue: 'Textus muscularis', translation: 'Muscle').save!
 TypeOfTissue.new(tissue: 'Thymus', translation: 'Thymus').save!
 TypeOfTissue.new(tissue: 'Medulla ossium', translation: 'Bone marrow').save!
@@ -133,24 +135,30 @@ TypeOfTissue.new(tissue: 'Mamma', translation: 'Mammary gland').save!
 
 TypeOfExamination.delete_all
 
-TypeOfExamination.new(examination: 'Analog microscophy').save!
-TypeOfExamination.new(examination: 'Electron microscophy').save!
-TypeOfExamination.new(examination: 'Transmition microscophy').save!
+type_of_examination_1 = TypeOfExamination.new(examination: 'Analog microscophy')
+type_of_examination_1.save!
+type_of_examination_2 = TypeOfExamination.new(examination: 'Electron microscophy')
+type_of_examination_2.save!
+type_of_examination_3 = TypeOfExamination.new(examination: 'Transmition microscophy')
+type_of_examination_3.save!
 
 Result.delete_all
 
-Result.new(description: 'description1', diagnosis: 'diagnosis1', type_of_tissue_id: '1', type_of_examination_id: '1').save!
-Result.new(description: 'description2', diagnosis: 'diagnosis2', type_of_tissue_id: '2', type_of_examination_id: '2').save!
-Result.new(description: 'description3', diagnosis: 'diagnosis3', type_of_tissue_id: '3', type_of_examination_id: '3').save!
-Result.new(description: 'description4', diagnosis: '', type_of_tissue_id: '3', type_of_examination_id: '1').save!
-Result.new(description: 'description5', diagnosis: '', type_of_tissue_id: '2', type_of_examination_id: '2').save!
+result_1 = Result.new(description: 'description1', diagnosis: 'diagnosis1', type_of_tissue_id: type_of_tissue_1.id, type_of_examination_id: type_of_examination_1.id)
+result_1.save!
+result_2 = Result.new(description: 'description2', diagnosis: 'diagnosis2', type_of_tissue_id: type_of_tissue_2.id, type_of_examination_id: type_of_examination_2.id)
+result_2.save!
+result_3 = Result.new(description: 'description3', diagnosis: 'diagnosis3', type_of_tissue_id: type_of_tissue_3.id, type_of_examination_id: type_of_examination_3.id)
+result_3.save!
+result_4 = Result.new(description: 'description4', diagnosis: '', type_of_tissue_id: type_of_tissue_3.id, type_of_examination_id: type_of_examination_1.id)
+result_4.save!
+result_5 = Result.new(description: 'description5', diagnosis: '', type_of_tissue_id: type_of_tissue_2.id, type_of_examination_id: type_of_examination_2.id)
+result_5.save!
 
 ResultsForUser.delete_all
 
-ResultsForUser.new(user_id: '1', worker_id: '1', result_id: '1').save!
-ResultsForUser.new(user_id: '2', worker_id: '1', result_id: '2').save!
-ResultsForUser.new(user_id: '2', worker_id: '2', result_id: '3').save!
-ResultsForUser.new(user_id: '1', worker_id: '3', result_id: '4').save!
-ResultsForUser.new(user_id: '3', worker_id: '1', result_id: '5').save!
-
-
+ResultsForUser.new(user_id: '1', worker_id: '1', result_id: result_1.id).save!
+ResultsForUser.new(user_id: '2', worker_id: '1', result_id: result_2.id).save!
+ResultsForUser.new(user_id: '2', worker_id: '2', result_id: result_3.id).save!
+ResultsForUser.new(user_id: '1', worker_id: '3', result_id: result_4.id).save!
+ResultsForUser.new(user_id: '3', worker_id: '1', result_id: result_5.id).save!

@@ -12,14 +12,14 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
       if resource_class == User
-        devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :pesel) }
-        devise_parameter_sanitizer.for(:update) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :pesel) }
+        devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :identifier) }
+        devise_parameter_sanitizer.for(:update) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :identifier) }
       elsif resource_class == Lab
         devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name, :description) }
         devise_parameter_sanitizer.for(:update) { |u| u.permit(:email, :password, :password_confirmation, :name, :description) }
       elsif resource_class == Worker
-        devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :pesel) }
-        devise_parameter_sanitizer.for(:update) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :pesel) }
+        devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :identifier) }
+        devise_parameter_sanitizer.for(:update) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :identifier) }
       elsif resource_class == Admin
         devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation) }
         devise_parameter_sanitizer.for(:update) { |u| u.permit(:email, :password, :password_confirmation) }

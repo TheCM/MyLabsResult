@@ -3,11 +3,11 @@ h1 class='text-center' Found users
 table class="table table-stripped table-hover"
   thead
     th #
-    th Pesel, patient
+    th identifier, patient
   tbody
     - @users.each do |user|
       tr
         td
           user.id
         td
-          = link_to user.pesel + ", " + user.last_name + ' ' + user.first_name, workers_view_my_results_path('user_id' => user.id)
+          = link_to user.identifier + ", " + user.last_name + ' ' + user.first_name, workers_view_my_results_path('user_id' => user.id)

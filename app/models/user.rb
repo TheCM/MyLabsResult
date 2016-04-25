@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :sex, format: { with: /\A[FM]\z/}
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :pesel, presence: true, format: { with: /\A\d{11}\z/i, on: :create}
+  validates :identifier, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,

@@ -43,7 +43,7 @@ class ResultController < ApplicationController
     if params['lastname'] != ''
       @users = User.where(last_name: params['lastname'])
     elsif params['identifier'] != ''
-      @users =  User.where(pesel: params['identifier'])
+      @users =  User.where(identifier: params['identifier'])
     else
       @users = User.all
     end
@@ -62,7 +62,7 @@ class ResultController < ApplicationController
     if params['lastname'] != ''
       @users = User.where(last_name: params['lastname'])
     elsif params['identifier'] != ''
-      @users =  User.where(pesel: params['identifier'])
+      @users =  User.where(identifier: params['identifier'])
     else
       @users = User.all
     end

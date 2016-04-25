@@ -10,15 +10,16 @@ table class="table table-stripped table-hover"
     - @resultsforuser.each do |rfu|
       - worker = Worker.find_by(id: rfu.worker_id)
       - result = Result.find_by(id: rfu.result_id)
-      tr
-        td
-          = link_to rfu.result_id, result_show_path('result_id' => rfu.result_id)
-        td
-          = worker.last_name + ' ' + worker.first_name
-        td
-          = result.description
-        td
-          - if result.diagnosis != ''
-            = result.diagnosis
-          - else
-            = 'None'
+      -if result.diagnosis != ''
+        tr
+          td
+            = link_to rfu.result_id, result_show_path('result_id' => rfu.result_id)
+          td
+            = worker.last_name + ' ' + worker.first_name
+          td
+            = result.description
+          td
+            - if result.diagnosis != ''
+              = result.diagnosis
+            - else
+              = 'None'
