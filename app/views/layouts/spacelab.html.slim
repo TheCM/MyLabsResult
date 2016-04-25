@@ -49,6 +49,9 @@ html(lang="en")
                   - if current_admin
                     li
                       = link_to raw("Register new lab <span class='fa fa-bookmark'> </span>"), new_lab_registration_path
+            - if current_admin
+                li
+                  = link_to raw("ResultsForUsers <span class='fa fa-bookmark'> </span>"), admins_view_results_for_users_path
             - if !current_user && !current_lab && !current_worker && !current_admin
               li class = "dropdown"
                 a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Login <span class="fa fa-toggle-down"></span> 

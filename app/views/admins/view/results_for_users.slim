@@ -1,0 +1,19 @@
+h1 class='text-center' Results for users
+
+table class="table table-stripped table-hover"
+  thead
+    th ID
+    th User ID
+    th Worker ID
+    th Result ID
+  tbody
+    - @resultsforuser.each do |rfu|
+      tr
+        td
+          = rfu.id
+        td
+          = rfu.user_id
+        td
+          = rfu.worker_id
+        td
+          = rfu.result_id

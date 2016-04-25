@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get 'workers/view/my_results'
 
+  get 'admins/view/results_for_users'
+
   get 'result/show'
   get 'result/new'
   post 'result/create'
