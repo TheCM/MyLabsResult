@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'result/show'
   get 'result/new'
   post 'result/create'
+  delete 'result/delete'
   get 'result/user_search_form'
   post 'result/user_search_list'
   get 'result/user_search_result_form'

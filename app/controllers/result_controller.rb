@@ -35,6 +35,23 @@ class ResultController < ApplicationController
 
   end
 
+  def delete
+    result_id = params['result_id']
+
+    @result = Result.find(result_id)
+    @resultforuser = ResultsForUser.find_by(result_id: result_id)
+
+    @result.result_attachments.each do |ra|
+      FileUtils.rm_rf(Rails.root + 'public/uploads/result_attachment/picture/' + ra.id.to_s)
+      ra.delete
+    end
+
+    @result.delete
+    @resultforuser.delete
+
+    redirect_to root_path, notice: 'result succesfully deleted'
+  end
+
   def user_search_form
 
   end

@@ -143,6 +143,7 @@ type_of_examination_3 = TypeOfExamination.new(examination: 'Transmition microsco
 type_of_examination_3.save!
 
 Result.delete_all
+ResultAttachment.delete_all
 
 result_1 = Result.new(description: 'description1', diagnosis: 'diagnosis1', type_of_tissue_id: type_of_tissue_1.id, type_of_examination_id: type_of_examination_1.id)
 result_1.save!

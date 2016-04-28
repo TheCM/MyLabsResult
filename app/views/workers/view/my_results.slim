@@ -6,13 +6,14 @@ table class="table table-stripped table-hover"
     th Patient
     th Description
     th Diagnosis
+    th Delete result
   tbody
     - @resultsforuser.each do |rfu|
       - user = User.find_by(id: rfu.user_id)
       - result = Result.find_by(id: rfu.result_id)
       tr
         td
-          = link_to rfu.result_id, result_show_path('result_id' => rfu.result_id)
+          = link_to '[Result]', result_show_path('result_id' => rfu.result_id)
         td
           = user.last_name + ' ' + user.first_name
         td
@@ -22,3 +23,5 @@ table class="table table-stripped table-hover"
             = result.diagnosis
           - else
             = 'None'
+        td
+          = link_to '[delete]', result_delete_path('result_id' => rfu.result_id), method: 'delete', data: {confirm: "Are you sure to delete this result?"}
