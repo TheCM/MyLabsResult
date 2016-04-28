@@ -24,4 +24,6 @@ table class="table table-stripped table-hover"
           - else
             = 'None'
         td
+          = link_to '[edit]', result_edit_path('result_id' => rfu.result_id)
+        td
           = link_to '[delete]', result_delete_path('result_id' => rfu.result_id), method: 'delete', data: {confirm: "Are you sure to delete this result?"}

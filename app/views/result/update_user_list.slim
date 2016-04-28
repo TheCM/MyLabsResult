@@ -1,0 +1,13 @@
+h1 class='text-center' Found users
+
+table class="table table-stripped table-hover"
+  thead
+    th #
+    th identifier, patient
+  tbody
+    - @users.each do |user|
+      tr
+        td
+          user.id
+        td
+          = link_to user.identifier + ", " + user.last_name + ' ' + user.first_name, result_update_user_path('user_id' => user.id, 'result_id': params['result_id']), method: 'post'

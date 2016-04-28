@@ -1,0 +1,65 @@
+div class="small-container"
+
+  p class="text-center" Click on the image to delete.
+
+  - @result.result_attachments.each do |ra|
+    = link_to image_tag(ra.picture_url, size: "300", alt: "Picture"), result_delete_picture_path(result_attachment_id: ra.id), method: 'delete'
+
+  hr
+
+  = form_tag(result_add_picture_path(result_id: @result.id), multipart: true, method: 'post')
+    div class="field"
+      = label_tag "picture"
+      = file_field_tag 'picture', 'multiple' => true, name: 'result_attachments[picture][]'
+    = submit_tag "Add a picture"
+
+  hr
+
+  =form_tag(result_change_user_path, method: 'get')
+    div class="field"
+      = label_tag 'Patient'
+      br
+      = text_field_tag 'Patient', @user.identifier + ", " + @user.last_name = " " + @user.first_name, disabled: true
+
+      input type='hidden' name='result[result_id]' value='#{@result.id}'-
+
+    = submit_tag 'Change patient'
+
+  hr
+
+  = form_tag(result_update_path, multipart: true, method: 'post')
+
+      input type='hidden' name='result[id]' value='#{@result.id}'
+
+      div class="field"
+        = label_tag 'Type of tissue'
+        br
+        select id="tissue_id" name="result[type_of_tissue_id]"
+          - @tissues.each do |tissue|
+            - if tissue.id != @result.type_of_tissue_id
+              option value = '#{ tissue.id }' #{ tissue.tissue } 
+            - else
+              option selected = "selected" value = '#{ tissue.id }' #{ tissue.tissue } 
+
+      div class="field"
+        = label_tag 'Type of examination'
+        br
+        select id="examination_id" name="result[type_of_examination_id]"
+          - @examinations.each do |examination|
+            - if examination.id != @result.type_of_examination_id
+              option value = '#{ examination.id }' #{ examination.examination } 
+            - else
+              option selected = "selected" value = '#{ examination.id }' #{ examination.examination } 
+
+      div class="field"
+          = label_tag 'description'
+          br
+          = text_area_tag 'result[description]', @result.description
+
+      div class="field"
+          = label_tag 'diagnosis'
+          br
+          = text_area_tag 'result[diagnosis]', @result.diagnosis
+
+      div class="actions"
+          = submit_tag "Update Result", class: "btn btn-primary"

@@ -1,0 +1,21 @@
+h1 Change user for result #{params['result']['result_id']}
+
+div class="small-container"
+
+  = form_tag(result_update_user_list_path(result_id: params['result']['result_id']))
+    = label_tag 'Identifier'
+    br
+    = text_field_tag 'identifier'
+
+    p
+    p <b>OR</b>
+    p
+
+    = label_tag 'Lastname'
+    br
+    = text_field_tag 'lastname'
+
+    br
+    br
+    div class="actions"
+      = submit_tag "Search for patients", class: "btn btn-primary submit_btn_left"
