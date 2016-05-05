@@ -1,0 +1,21 @@
+table class="table table-stripped table-hover"
+  thead
+    th ID
+    th Lab name
+    th Description
+  tbody
+    - @labs.each do |lab|
+      tr class="#{lab.is_active ? '' : 'danger-row'}"
+        td
+          = lab.id
+        td
+          = lab.name
+          - if !lab.is_active
+            '
+            span class="fa fa-close"
+        td
+          = lab.description
+        td
+          = link_to '[workers]', admins_view_view_workers_path('lab_id' => lab.id)
+        td
+          = link_to '[view]', accounts_view_profile_path('lab_id' => lab.id)

@@ -2,7 +2,6 @@ h1 class='text-center' Results of worker #{ @worker.last_name + ' ' + @worker.fi
 
 table class="table table-stripped table-hover"
   thead
-    th #
     th Doctor
     th Patient
     th Description
@@ -14,8 +13,6 @@ table class="table table-stripped table-hover"
       - user   = User.find_by(id: rfu.user_id)
       tr
         td
-          = link_to '[Result]', result_show_path('result_id' => rfu.result_id)
-        td
           = worker.last_name + ' ' + worker.first_name
         td
           = user.last_name + ' ' + user.first_name
@@ -26,3 +23,9 @@ table class="table table-stripped table-hover"
             = result.diagnosis
           - else
             = 'None'
+        td
+          = link_to '[show]', result_show_path('result_id' => result.id)
+        td
+          = link_to '[edit]', result_edit_path('result_id' => result.id)
+        td
+          = link_to '[delete]', result_delete_path('result_id' => result.id), method: 'delete', data: {confirm: "Are you sure to delete this result?"}

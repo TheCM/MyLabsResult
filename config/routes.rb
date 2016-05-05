@@ -7,15 +7,16 @@ Rails.application.routes.draw do
 
 
   devise_for :admins, controllers: { registrations: "admins/registrations" }
-  devise_for :workers, controllers: { registrations: "workers/registrations" }
-  devise_for :users, controllers: { registrations: "users/registrations" }
-  devise_for :labs, controllers: { registrations: "labs/registrations" }
+  devise_for :workers, controllers: { registrations: "workers/registrations", sessions: "workers/sessions" }
+  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
+  devise_for :labs, controllers: { registrations: "labs/registrations", sessions: "labs/sessions" }
 
   root 'main_site#main'
 
   get 'main_site/main'
 
   get 'labs/view/my_workers'
+  get 'labs/view/my_fired_workers'
   get 'labs/view/worker_result_list'
 
   get 'users/view/my_results'
@@ -24,6 +25,10 @@ Rails.application.routes.draw do
 
   get 'admins/view/results_for_users'
   get 'admins/view/all_results'
+  get 'admins/view/view_labs'
+  get 'admins/view/view_workers'
+  get 'admins/view/view_users'
+  get 'admins/view/view_admins'
 
   delete 'result/delete'
   delete 'result/delete_picture'
@@ -40,6 +45,13 @@ Rails.application.routes.draw do
   post 'result/user_search_list'
   post 'result/user_search_result_list'
   post 'result/add_picture'
+
+  get 'accounts/my_profile'
+  get 'accounts/view_profile'
+  get 'accounts/edit_profile'
+  post 'accounts/update_profile'
+  get 'accounts/activate_account'
+  get 'accounts/deactivate_account'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

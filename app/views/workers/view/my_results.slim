@@ -2,18 +2,14 @@ h1 class='text-center' My results
 
 table class="table table-stripped table-hover"
   thead
-    th #
     th Patient
     th Description
     th Diagnosis
-    th Delete result
   tbody
     - @resultsforuser.each do |rfu|
       - user = User.find_by(id: rfu.user_id)
       - result = Result.find_by(id: rfu.result_id)
       tr
-        td
-          = link_to '[Result]', result_show_path('result_id' => rfu.result_id)
         td
           = user.last_name + ' ' + user.first_name
         td
@@ -23,6 +19,8 @@ table class="table table-stripped table-hover"
             = result.diagnosis
           - else
             = 'None'
+        td
+          = link_to '[view]', result_show_path('result_id' => rfu.result_id)
         td
           = link_to '[edit]', result_edit_path('result_id' => rfu.result_id)
         td

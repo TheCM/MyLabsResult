@@ -1,0 +1,28 @@
+h1 class="text-center" My fired workers!
+
+table class="table table-stripped table-hover"
+  thead
+    th #
+    th first name
+    th last name
+    th sex
+    th identifier
+    th email
+  tbody
+    - @workers.each do |worker|
+      tr
+        td
+          = worker.id
+        td
+          = worker.first_name
+        td
+          = worker.last_name
+        td
+          = worker.sex
+        td
+          = worker.identifier
+        td
+          = worker.email
+        td
+          = link_to 'Results', labs_view_worker_result_list_path(worker_id: worker.id)
+

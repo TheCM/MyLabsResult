@@ -1,0 +1,33 @@
+h1 class="text-center" Workers
+
+table class="table table-stripped table-hover"
+  thead
+    th #
+    th first name
+    th last name
+    th sex
+    th identifier
+    th email
+  tbody
+    - @workers.each do |worker|
+      tr class="#{worker.is_active ? '' : 'danger-row'}"
+        td
+          = worker.id
+        td
+          = worker.identifier
+          - if !worker.is_active
+            '
+            span class="fa fa-close"
+        td
+          = worker.first_name
+        td
+          = worker.last_name
+        td
+          = worker.sex
+        td
+          = worker.email
+        td
+          = link_to '[view]', accounts_view_profile_path(worker_id: worker.id)
+        td
+          = link_to '[results]', admins_view_all_results_path(worker_id: worker.id)
+

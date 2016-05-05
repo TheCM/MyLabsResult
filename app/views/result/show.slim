@@ -1,19 +1,30 @@
-h1 This is page with results details
+- if (current_lab && current_lab.id == @lab.id) || (current_worker && current_worker.id == @worker.id) || current_admin || (current_user && current_user.id == @user.id)
+  h1 This is page with results details
 
-p
-  ="Number of photos: " + @result_photos_count.to_s
-
-div class='container'
-  - @result_photos.each do |photo|
-    = image_tag photo.picture_url, size: "300", alt: "Picture"
-
-- if current_worker or current_lab
   p
-    ="Type_of_tissue: " + @tissue
-  p
-    ="Type_of_examination: " + @examination
+    ="Number of photos: " + @result_photos_count.to_s
 
-p
-  ="Description: " + @result.description
-p
-  ="Diagnosis: " + @result.diagnosis
+  div class='container'
+    - @result_photos.each do |photo|
+      = image_tag photo.picture_url, size: "300", alt: "Picture"
+
+  - if current_worker or current_lab
+    p
+      ="Type_of_tissue: " + @tissue
+    p
+      ="Type_of_examination: " + @examination
+
+  p
+    ="Description: " + @result.description
+  p
+    ="Diagnosis: " + @result.diagnosis
+  p
+    = @lab.name
+  - if (current_lab && current_lab.id == @lab.id) || (current_worker && current_worker.id == @worker.id) || current_admin
+    div class="small-container"
+      p class="text-center"
+        = link_to '[edit]', result_edit_path('result_id' => @result.id)
+        '|
+        = link_to '[delete]', result_delete_path('result_id' => @result.id), method: 'delete', data: {confirm: "Are you sure to delete this result?"}
+- else
+  h1 Access not allowed

@@ -8,7 +8,14 @@ class Users::SessionsController < Devise::SessionsController
 
  #  POST /resource/sign_in
    def create
-     super
+    @user = User.find_by(email: params['user']['email']) rescue nil
+    if @user && @user.is_active
+      super
+    elsif !@user
+      redirect_to new_user_session_path, notice: 'Invalid email or password.'
+    else
+      redirect_to new_user_session_path, notice: 'You are not active.'
+    end
    end
 
  #  DELETE /resource/sign_out

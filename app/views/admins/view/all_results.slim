@@ -9,7 +9,7 @@ table class="table table-stripped table-hover"
     - @results.each do |result|
       tr
         td
-          = link_to result.id, result_show_path('result_id' => result.id)
+          = result.id
         td
           = result.description
         td
@@ -17,3 +17,5 @@ table class="table table-stripped table-hover"
             = result.diagnosis
           - else
             = 'None'
+        td
+          = link_to '[show]', result_show_path('result_id' => result.id)

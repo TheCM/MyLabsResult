@@ -1,0 +1,106 @@
+- if current_user
+  div class="small-container-2"
+    h1 My profile
+    table class="table table-stripped table-hover"
+      thead
+        th Field
+        th Value
+      tbody
+        tr
+          td
+            'Identifier
+          td
+            = current_user.identifier
+        tr
+          td
+            'First name
+          td
+            = current_user.first_name
+        tr
+          td
+            'Last name
+          td
+            = current_user.last_name
+        tr
+          td
+            'Sex
+          td
+            = current_user.sex
+        tr
+          td
+            'E-mail
+          td
+            = current_user.email
+- elsif current_worker
+  div class="small-container-2"
+    h1 My profile
+    table class="table table-stripped table-hover"
+      thead
+        th Field
+        th Value
+      tbody
+        tr
+          td
+            'Identifier
+          td
+            = current_worker.identifier
+        tr
+          td
+            'First name
+          td
+            = current_worker.first_name
+        tr
+          td
+            'Last name
+          td
+            = current_worker.last_name
+        tr
+          td
+            'Sex
+          td
+            = current_worker.sex
+        tr
+          td
+            'E-mail
+          td
+            = current_worker.email
+- elsif current_lab
+  div class="small-container-2"
+    h1 My profile
+    table class="table table-stripped table-hover"
+      thead
+        th Field
+        th Value
+      tbody
+        tr
+          td
+            'Name
+          td
+            = current_lab.name
+        tr
+          td
+            'Description
+          td
+            = current_lab.description
+        tr
+          td
+            'E-mail
+          td
+            = current_lab.email
+- elsif current_admin
+  div class="small-container-2"
+    h1 My profile
+    h2 class="text-info" Admin
+    table class="table table-stripped table-hover"
+      thead
+        th Field
+        th Value
+      tbody
+        tr
+        tr
+          td
+            'E-mail
+          td
+            = current_admin.email
+- else
+  h1 Access denied

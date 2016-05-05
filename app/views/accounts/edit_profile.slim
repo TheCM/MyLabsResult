@@ -1,0 +1,166 @@
+h2 Edit profile
+-if @user
+  div class="small-container"
+    = form_tag accounts_update_profile_path, method: 'post'
+
+      div class="field"
+        = hidden_field_tag 'user[id]', @user.id
+
+      div class="field"
+        = label_tag 'email'
+        = email_field_tag 'user[email]', @user.email
+
+      div class="field"
+        = label_tag 'first name'
+        = text_field_tag 'user[first_name]', @user.first_name
+
+      div class="field"
+        = label_tag 'last name'
+        = text_field_tag 'user[last_name]', @user.last_name
+
+      div class="field"
+        = label_tag 'sex'
+        br
+        = radio_button_tag  'user[sex]', 'M', @user.sex == 'M' ? true : false
+        'Male
+        br
+        = radio_button_tag  'user[sex]', 'F', @user.sex == 'F' ? true : false
+        'Female
+
+      hr
+
+      - if current_user
+        div class="field"
+          = label_tag 'current password'
+          = password_field_tag 'user[current_password]'
+
+      div class="field"
+        = label_tag 'new password'
+        = password_field_tag 'user[new_password]'
+
+      div class="field"
+        = label_tag 'confirm password'
+        = password_field_tag 'user[confirm_password]'
+
+      div class="actions"
+        = submit_tag "Update", class: 'btn btn-primary'
+
+-elsif @worker
+  div class="small-container"
+    = form_tag accounts_update_profile_path, method: 'post'
+
+      div class="field"
+        = hidden_field_tag 'worker[id]', @worker.id
+
+      div class="field"
+        = label_tag 'email'
+        = email_field_tag 'worker[email]', @worker.email
+
+      div class="field"
+        = label_tag 'first name'
+        = text_field_tag 'worker[first_name]', @worker.first_name
+
+      div class="field"
+        = label_tag 'last name'
+        = text_field_tag 'worker[last_name]', @worker.last_name
+
+      div class="field"
+        = label_tag 'sex'
+        br
+        = radio_button_tag  'worker[sex]', 'M', @worker.sex == 'M' ? true : false
+        'Male
+        br
+        = radio_button_tag  'worker[sex]', 'F', @worker.sex == 'F' ? true : false
+        'Female
+
+      - if current_admin 
+        div class="field"
+          = label_tag 'lab'
+          br
+          select id="worker_lab_id" name="worker[lab_id]"
+            option value="#{@worker.lab_id}" #{Lab.find(@worker.lab_id).name}
+            - @labs.each do |lab|
+              - if lab.id != @worker.lab_id
+                option value="#{lab.id}" #{lab.name}
+
+      hr
+
+      - if current_worker
+        div class="field"
+          = label_tag 'current password'
+          = password_field_tag 'worker[current_password]'
+
+      div class="field"
+        = label_tag 'new password'
+        = password_field_tag 'worker[new_password]'
+
+      div class="field"
+        = label_tag 'confirm password'
+        = password_field_tag 'worker[confirm_password]'
+
+      div class="actions"
+        = submit_tag "Sign up", class: 'btn btn-primary'
+
+-elsif @lab
+  div class="small-container"
+    = form_tag accounts_update_profile_path, method: 'post'
+
+      div class="field"
+        = hidden_field_tag 'lab[id]', @lab.id
+
+      div class="field"
+        = label_tag 'email'
+        = email_field_tag 'lab[email]', @lab.email
+
+      div class="field"
+        = label_tag 'name'
+        = text_field_tag 'lab[name]', @lab.name
+
+      div class="field"
+        = label_tag 'description'
+        = text_area_tag 'lab[description]', @lab.description
+
+      hr
+
+      - if current_lab
+        div class="field"
+          = label_tag 'current password'
+          = password_field_tag 'lab[current_password]'
+
+      div class="field"
+        = label_tag 'new password'
+        = password_field_tag 'lab[new_password]'
+
+      div class="field"
+        = label_tag 'confirm password'
+        = password_field_tag 'lab[confirm_password]'
+
+      div class="actions"
+        = submit_tag "Update", class: 'btn btn-primary'
+
+-elsif @admin
+  div class="small-container"
+    = form_tag accounts_update_profile_path, method: 'post'
+
+      div class="field"
+        = hidden_field_tag 'admin[id]', @admin.id
+
+      div class="field"
+        = label_tag 'email'
+        = email_field_tag 'admin[email]', @admin.email
+
+      hr
+
+      div class="field"
+        = label_tag 'new password'
+        = password_field_tag 'admin[new_password]'
+
+      div class="field"
+        = label_tag 'confirm password'
+        = password_field_tag 'admin[confirm_password]'
+
+      div class="actions"
+        = submit_tag "Update", class: 'btn btn-primary'
+- else
+  h1 Access denied!
+

@@ -23,8 +23,13 @@ html(lang="en")
         div class = "navbar-collapse collapse" id = "navbar-main"
           ul class = "nav navbar-nav"
             - if current_lab
-              li
-                = link_to raw("My workers <span class='fa fa-users'></span>"), labs_view_my_workers_path
+              li class='dropdown'
+                a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" My results <span class="fa fa-toggle-down"></span> 
+                ul class="dropdown-menu" aria-labelledby="themes"
+                  li
+                    = link_to raw("My workers <span class='fa fa-users'></span>"), labs_view_my_workers_path
+                  li
+                    = link_to raw("My fired workers <span class='fa fa-users'></span>"), labs_view_my_fired_workers_path
 
             - if current_user
               li
@@ -62,6 +67,18 @@ html(lang="en")
                   li
                     = link_to raw("ResultsForUsers <span class='fa fa-bookmark'> </span>"), admins_view_results_for_users_path
 
+              li class="dropdown"
+                a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" View <span class="fa fa-toggle-down"></span> 
+                ul class="dropdown-menu" aria-labelledby="themes"
+                  li
+                    = link_to raw("All labs <span class='fa fa-bookmark'> </span>"), admins_view_view_labs_path
+                  li
+                    = link_to raw("All users <span class='fa fa-bookmark'> </span>"), admins_view_view_users_path
+                  li
+                    = link_to raw("All workers <span class='fa fa-bookmark'> </span>"), admins_view_view_workers_path
+                  li
+                    = link_to raw("All admins <span class='fa fa-bookmark'> </span>"), admins_view_view_admins_path
+
             - if !current_user && !current_lab && !current_worker && !current_admin
               li class = "dropdown"
                 a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Login <span class="fa fa-toggle-down"></span> 
@@ -81,16 +98,17 @@ html(lang="en")
               ul class = "list-group"
                 - if current_user
                   li
-                    = 'User: <b>'.html_safe + current_user.first_name + ' ' + current_user.last_name + '</b>'.html_safe
+                    = link_to raw('User: <b>' + current_user.first_name + ' ' + current_user.last_name + '</b>'), accounts_my_profile_path
                 - if current_worker
                   li
-                    = 'Worker: <b>'.html_safe + current_worker.first_name + ' ' + current_worker.last_name + '</b>'.html_safe + ', <b>'.html_safe + Lab.find_by(id: current_worker.lab_id).name + '</b>'.html_safe
+                    = link_to raw('Worker: <b>' + current_worker.first_name + ' ' + current_worker.last_name + '</b>'), accounts_my_profile_path
+                    = ', <b>'.html_safe + Lab.find_by(id: current_worker.lab_id).name + '</b>'.html_safe
                 - if current_lab
                   li
-                    = 'Lab: <b>'.html_safe + current_lab.name + '</b>'.html_safe
+                    = link_to raw('Lab: <b>' + current_lab.name + '</b>'), accounts_my_profile_path
                 - if current_admin
                   li
-                    = 'Admin: <b>'.html_safe + current_admin.email  + '</b>'.html_safe
+                    = link_to raw('Admin: <b>' + current_admin.email  + '</b>'), accounts_my_profile_path
 
 
 

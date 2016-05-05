@@ -1,0 +1,13 @@
+table class="table table-stripped table-hover"
+  thead
+    th ID
+    th E-mail
+  tbody
+    - @admins.each do |admin|
+      tr
+        td
+          = admin.id
+        td
+          = admin.email
+        td
+          = link_to '[view]', accounts_view_profile_path('admin_id' => admin.id)

@@ -6,6 +6,10 @@ class ResultController < ApplicationController
     @result_photos = @result.result_attachments.all
     @tissue = TypeOfTissue.find(@result.type_of_tissue_id).tissue
     @examination = TypeOfExamination.find(@result.type_of_examination_id).examination
+    @result_for_user = ResultsForUser.find_by(result_id: id)
+    @worker = Worker.find(@result_for_user.worker_id)
+    @lab = Lab.find(@worker.lab_id)
+    @user = User.find(@result_for_user.user_id)
   end
 
 
@@ -66,11 +70,11 @@ class ResultController < ApplicationController
 
   def update_user_list
     if params['lastname'] != ''
-      @users = User.where(last_name: params['lastname'])
+      @users = User.where(last_name: params['lastname'], is_active: true)
     elsif params['identifier'] != ''
-      @users =  User.where(identifier: params['identifier'])
+      @users =  User.where(identifier: params['identifier'], is_active: true)
     else
-      @users = User.all
+      @users = User.where(is_active: true)
     end
 
     if @users == []
@@ -120,11 +124,11 @@ class ResultController < ApplicationController
 
   def user_search_list
     if params['lastname'] != ''
-      @users = User.where(last_name: params['lastname'])
+      @users = User.where(last_name: params['lastname'], is_active: true)
     elsif params['identifier'] != ''
-      @users =  User.where(identifier: params['identifier'])
+      @users =  User.where(identifier: params['identifier'], is_active: true)
     else
-      @users = User.all
+      @users = User.where(is_active: true)
     end
 
     if @users == []
@@ -139,11 +143,11 @@ class ResultController < ApplicationController
 
   def user_search_result_list
     if params['lastname'] != ''
-      @users = User.where(last_name: params['lastname'])
+      @users = User.where(last_name: params['lastname'], is_active: true)
     elsif params['identifier'] != ''
-      @users =  User.where(identifier: params['identifier'])
+      @users =  User.where(identifier: params['identifier'], is_active: true)
     else
-      @users = User.all
+      @users = User.where(is_active: true)
     end
 
     if @users == []
