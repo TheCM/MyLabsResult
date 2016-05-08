@@ -24,5 +24,7 @@ table class="table table-stripped table-hover"
         td
           = worker.email
         td
+          = link_to 'View', accounts_view_profile_path(worker_id: worker.id)
+        td
           = link_to 'Results', labs_view_worker_result_list_path(worker_id: worker.id)
 

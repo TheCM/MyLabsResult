@@ -1,133 +1,139 @@
-- if !current_admin
-  h1 Access denied
-- else
-  - if @user
-    div class="small-container-2"
-      h1 My profile
-      table class="table table-stripped table-hover"
-        thead
-          th Field
-          th Value
-        tbody
-          tr
-            td
-              'Identifier
-            td
-              = @user.identifier
-          tr
-            td
-              'First name
-            td
-              = @user.first_name
-          tr
-            td
-              'Last name
-            td
-              = @user.last_name
-          tr
-            td
-              'Sex
-            td
-              = @user.sex
-          tr
-            td
-              'E-mail
-            td
-              = @user.email
-      - if @user.is_active
-        = link_to 'Deactivate account', accounts_deactivate_account_path(user_id: @user.id)
-      - else
-        = link_to 'Activate account', accounts_activate_account_path(user_id: @user.id)
-      ' |
-      = link_to 'Edit', accounts_edit_profile_path(user_id: @user.id)
-  - elsif @worker
-    div class="small-container-2"
-      h1 My profile
-      table class="table table-stripped table-hover"
-        thead
-          th Field
-          th Value
-        tbody
-          tr
-            td
-              'Identifier
-            td
-              = @worker.identifier
-          tr
-            td
-              'Lab
-            td
-              = Lab.find(@worker.lab_id).name rescue 'None'
-          tr
-            td
-              'First name
-            td
-              = @worker.first_name
-          tr
-            td
-              'Last name
-            td
-              = @worker.last_name
-          tr
-            td
-              'Sex
-            td
-              = @worker.sex
-          tr
-            td
-              'E-mail
-            td
-              = @worker.email
-      - if @worker.is_active
-        = link_to 'Deactivate account ', accounts_deactivate_account_path(worker_id: @worker.id)
-      - else
-        = link_to 'Activate account', accounts_activate_account_path(worker_id: @worker.id)
-      ' |
-      = link_to 'Edit', accounts_edit_profile_path(worker_id: @worker.id)
-  - elsif @lab
-    div class="small-container-2"
-      h1 My profile
-      table class="table table-stripped table-hover"
-        thead
-          th Field
-          th Value
-        tbody
-          tr
-            td
-              'Name
-            td
-              = @lab.name
-          tr
-            td
-              'Description
-            td
-              = @lab.description
-          tr
-            td
-              'E-mail
-            td
-              = @lab.email
+- if @lab
+  div class="small-container-2"
+    h1 Labs profile
+    table class="table table-stripped table-hover"
+      thead
+        th Field
+        th Value
+      tbody
+        tr
+          td
+            'Name
+          td
+            = @lab.name
+        tr
+          td
+            'Description
+          td
+            = @lab.description
+        tr
+          td
+            'E-mail
+          td
+            = @lab.email
+    - if current_admin
       - if @lab.is_active
         = link_to 'Deactivate account', accounts_deactivate_account_path(lab_id: @lab.id)
       - else
         = link_to 'Activate account', accounts_activate_account_path(lab_id: @lab.id)
       ' |
       = link_to 'Edit', accounts_edit_profile_path(lab_id: @lab.id)
-  - elsif @admin
-    div class="small-container-2"
-      h1 My profile
-      h2 class="text-info" Admin
-      table class="table table-stripped table-hover"
-        thead
-          th Field
-          th Value
-        tbody
-          tr
-          tr
-            td
-              'E-mail
-            td
-              = @admin.email
+- elsif @user
+  div class="small-container-2"
+    h1 Users profile
+    table class="table table-stripped table-hover"
+      thead
+        th Field
+        th Value
+      tbody
+        tr
+          td
+            'Identifier
+          td
+            = @user.identifier
+        tr
+          td
+            'First name
+          td
+            = @user.first_name
+        tr
+          td
+            'Last name
+          td
+            = @user.last_name
+        tr
+          td
+            'Sex
+          td
+            = @user.sex
+        tr
+          td
+            'E-mail
+          td
+            = @user.email
+    - if current_admin || current_lab
+      - if @user.is_active
+        = link_to 'Deactivate account', accounts_deactivate_account_path(user_id: @user.id)
+      - else
+        = link_to 'Activate account', accounts_activate_account_path(user_id: @user.id)
+      ' |
+      = link_to 'Edit', accounts_edit_profile_path(user_id: @user.id)
+- elsif @worker
+  div class="small-container-2"
+    h1 Workers profile
+    table class="table table-stripped table-hover"
+      thead
+        th Field
+        th Value
+      tbody
+        tr
+          td
+            'Identifier
+          td
+            = @worker.identifier
+        tr
+          td
+            'Lab
+          td
+            = Lab.find(@worker.lab_id).name rescue 'None'
+        tr
+          td
+            'First name
+          td
+            = @worker.first_name
+        tr
+          td
+            'Last name
+          td
+            = @worker.last_name
+        tr
+          td
+            'Sex
+          td
+            = @worker.sex
+        tr
+          td
+            'E-mail
+          td
+            = @worker.email
+        tr
+          td
+            'Lab
+          td
+            = link_to Lab.find(@worker.lab_id).name, accounts_view_profile_path(lab_id: @worker.lab_id)
+    - if current_admin || (current_lab && current_lab.id == @worker.lab_id)
+      - if @worker.is_active
+        = link_to 'Deactivate account ', accounts_deactivate_account_path(worker_id: @worker.id)
+      - else
+        = link_to 'Activate account', accounts_activate_account_path(worker_id: @worker.id)
+      ' |
+      = link_to 'Edit', accounts_edit_profile_path(worker_id: @worker.id)
+- elsif @admin
+  div class="small-container-2"
+    h1 Admins profile
+    h2 class="text-info" Admin
+    table class="table table-stripped table-hover"
+      thead
+        th Field
+        th Value
+      tbody
+        tr
+        tr
+          td
+            'E-mail
+          td
+            = @admin.email
+    - if current_admin
       = link_to 'Edit', accounts_edit_profile_path(admin_id: @admin.id)
-  - else
-    h1 No account has found
+- else
+  h1 No account has found

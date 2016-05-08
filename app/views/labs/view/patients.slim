@@ -1,0 +1,28 @@
+h1 class="text-center" Users
+
+table class="table table-stripped table-hover"
+  thead
+    th identifier
+    th first name
+    th last name
+    th sex
+    th email
+  tbody
+    - @users.each do |user|
+      tr class="#{user.is_active ? '' : 'danger-row'}"
+        td
+          = user.identifier
+          - if !user.is_active
+            '
+            span class="fa fa-close"
+        td
+          = user.first_name
+        td
+          = user.last_name
+        td
+          = user.sex
+        td
+          = user.email
+        td
+          = link_to '[view]', accounts_view_profile_path(user_id: user.id)
+

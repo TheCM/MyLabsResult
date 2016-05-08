@@ -18,10 +18,14 @@ Rails.application.routes.draw do
   get 'labs/view/my_workers'
   get 'labs/view/my_fired_workers'
   get 'labs/view/worker_result_list'
+  post 'labs/view/patients'
+  get 'labs/view/search_patients'
 
   get 'users/view/my_results'
 
   get 'workers/view/my_results'
+  get 'workers/view/labs_workers'
+  get 'workers/view/my_labs_results'
 
   get 'admins/view/results_for_users'
   get 'admins/view/all_results'

@@ -1,30 +1,34 @@
-- if (current_lab && current_lab.id == @lab.id) || (current_worker && current_worker.id == @worker.id) || current_admin || (current_user && current_user.id == @user.id)
-  h1 This is page with results details
+- if (current_lab && current_lab.id == @lab.id) || (current_worker && current_worker.lab_id == @lab.id) || current_admin || (current_user && current_user.id == @user.id)
+  h1 class="text-center text-brighter-color" Results details
 
   p
     ="Number of photos: " + @result_photos_count.to_s
+  div class='row'
+    div class='container col-md-4'
+      - @result_photos.each do |photo|
+        = image_tag photo.picture_url, size: "300", alt: "Picture"
 
-  div class='container'
-    - @result_photos.each do |photo|
-      = image_tag photo.picture_url, size: "300", alt: "Picture"
+    div class='col-md-6'
+      - if current_worker or current_lab
+        p
+          =raw("<b>Type of tissue: </b>") + @tissue
+        p
+          =raw("<b>Type of examination: </b>") + @examination
 
-  - if current_worker or current_lab
-    p
-      ="Type_of_tissue: " + @tissue
-    p
-      ="Type_of_examination: " + @examination
-
-  p
-    ="Description: " + @result.description
-  p
-    ="Diagnosis: " + @result.diagnosis
-  p
-    = @lab.name
-  - if (current_lab && current_lab.id == @lab.id) || (current_worker && current_worker.id == @worker.id) || current_admin
-    div class="small-container"
-      p class="text-center"
-        = link_to '[edit]', result_edit_path('result_id' => @result.id)
-        '|
-        = link_to '[delete]', result_delete_path('result_id' => @result.id), method: 'delete', data: {confirm: "Are you sure to delete this result?"}
+      p
+        =raw("<b>Description: </b>") + @result.description
+      p
+        =raw("<b>Diagnosis: </b>") + @result.diagnosis
+      p
+        = raw('<b>Doctor:</b>')
+        = link_to @worker.first_name + " " + @worker.last_name, accounts_view_profile_path(worker_id: @worker.id)
+        = raw('<b>| Lab:</b>')
+        = link_to @lab.name, accounts_view_profile_path(lab_id: @lab.id)
+      - if (current_lab && current_lab.id == @lab.id) || (current_worker && current_worker.id == @worker.id) || current_admin
+        div class="small-container"
+          p class="text-center"
+            = link_to '[edit]', result_edit_path('result_id' => @result.id)
+            '|
+            = link_to '[delete]', result_delete_path('result_id' => @result.id), method: 'delete', data: {confirm: "Are you sure to delete this result?"}
 - else
   h1 Access not allowed

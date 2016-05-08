@@ -1,0 +1,27 @@
+h1 class='text-center' My labs results of worker #{ @worker.last_name + ' ' + @worker.first_name }
+
+table class="table table-stripped table-hover"
+  thead
+    th Doctor
+    th Patient
+    th Description
+    th Diagnosis
+  tbody
+    - @resultsforuser.each do |rfu|
+      - worker = Worker.find_by(id: rfu.worker_id)
+      - result = Result.find_by(id: rfu.result_id)
+      - user   = User.find_by(id: rfu.user_id)
+      tr
+        td
+          = worker.last_name + ' ' + worker.first_name
+        td
+          = user.last_name + ' ' + user.first_name
+        td
+          = result.description
+        td
+          - if result.diagnosis != ''
+            = result.diagnosis
+          - else
+            = 'None'
+        td
+          = link_to '[show]', result_show_path('result_id' => result.id)

@@ -6,6 +6,11 @@ h2 Edit profile
       div class="field"
         = hidden_field_tag 'user[id]', @user.id
 
+      -if current_lab || current_admin
+        div class='field'
+          = label_tag 'identifier'
+          = text_field_tag 'user[identifier]', @user.identifier
+
       div class="field"
         = label_tag 'email'
         = email_field_tag 'user[email]', @user.email
@@ -51,6 +56,11 @@ h2 Edit profile
 
       div class="field"
         = hidden_field_tag 'worker[id]', @worker.id
+
+      -if current_lab.id == @worker.lab_id || current_admin
+        div class='field'
+          = label_tag 'identifier'
+          = text_field_tag 'worker[identifier]', @worker.identifier
 
       div class="field"
         = label_tag 'email'
@@ -99,7 +109,7 @@ h2 Edit profile
         = password_field_tag 'worker[confirm_password]'
 
       div class="actions"
-        = submit_tag "Sign up", class: 'btn btn-primary'
+        = submit_tag "Update", class: 'btn btn-primary'
 
 -elsif @lab
   div class="small-container"

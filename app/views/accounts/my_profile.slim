@@ -64,6 +64,11 @@
             'E-mail
           td
             = current_worker.email
+        tr
+          td
+            'Lab
+          td
+            = link_to Lab.find(current_worker.lab_id).name, accounts_view_profile_path(lab_id: current_worker.lab_id)
 - elsif current_lab
   div class="small-container-2"
     h1 My profile

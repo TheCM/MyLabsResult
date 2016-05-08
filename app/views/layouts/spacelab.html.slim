@@ -24,12 +24,14 @@ html(lang="en")
           ul class = "nav navbar-nav"
             - if current_lab
               li class='dropdown'
-                a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" My results <span class="fa fa-toggle-down"></span> 
+                a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" My workers <span class="fa fa-toggle-down"></span> 
                 ul class="dropdown-menu" aria-labelledby="themes"
                   li
                     = link_to raw("My workers <span class='fa fa-users'></span>"), labs_view_my_workers_path
                   li
                     = link_to raw("My fired workers <span class='fa fa-users'></span>"), labs_view_my_fired_workers_path
+              li
+                = link_to raw("Patients <span class='fa fa-users'></span>"), labs_view_search_patients_path
 
             - if current_user
               li
@@ -37,12 +39,14 @@ html(lang="en")
 
             - if current_worker
               li class='dropdown'
-                a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" My results <span class="fa fa-toggle-down"></span> 
+                a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Results <span class="fa fa-toggle-down"></span> 
                 ul class="dropdown-menu" aria-labelledby="themes"
                   li
                     = link_to raw("All my results </span><span class='fa fa-user-md' aria-hidden='true'></span>"), workers_view_my_results_path
                   li
-                    = link_to raw("Results by patients </span><span class='fa fa-user-md' aria-hidden='true'></span>"), result_user_search_result_form_path
+                    = link_to raw("My results by patients </span><span class='fa fa-user-md' aria-hidden='true'></span>"), result_user_search_result_form_path
+                  li
+                    = link_to raw("My labs results </span><span class='fa fa-user-md' aria-hidden='true'></span>"), workers_view_labs_workers_path
               li
                 = link_to raw("New result </span><span class='fa fa-plus-square' aria-hidden='true'></span>"), result_user_search_form_path
 
@@ -102,7 +106,8 @@ html(lang="en")
                 - if current_worker
                   li
                     = link_to raw('Worker: <b>' + current_worker.first_name + ' ' + current_worker.last_name + '</b>'), accounts_my_profile_path
-                    = ', <b>'.html_safe + Lab.find_by(id: current_worker.lab_id).name + '</b>'.html_safe
+                    = ', '
+                    = link_to raw('<b>' + Lab.find_by(id: current_worker.lab_id).name + '</b>'), accounts_view_profile_path(lab_id: current_worker.lab_id)
                 - if current_lab
                   li
                     = link_to raw('Lab: <b>' + current_lab.name + '</b>'), accounts_my_profile_path

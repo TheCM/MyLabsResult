@@ -1,0 +1,21 @@
+h1 class="text-center" My coworkers
+
+table class="table table-stripped table-hover"
+  thead
+    th first name
+    th last name
+    th email
+  tbody
+    - @workers.each do |worker|
+      -if current_worker.id != worker.id
+        tr
+          td
+            = worker.first_name
+          td
+            = worker.last_name
+          td
+            = worker.email
+          td
+            = link_to 'View', accounts_view_profile_path(worker_id: worker.id)
+          td
+            = link_to 'Results', workers_view_my_labs_results_path(worker_id: worker.id)
